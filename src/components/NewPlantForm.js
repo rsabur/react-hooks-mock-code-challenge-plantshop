@@ -1,8 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 
-function NewPlantForm() {
+function NewPlantForm({ addPlant }) {
+  const [newPlant, setNewPlant] = useState('')
+
+  const handleNewPlantForm = (e) => {
+    e.preventDefault()
+    console.log("works")
+
+    const plantObj = {
+      plants: {
+        name,
+        image,
+        price
+      }
+    }
+    
+    fetch('http://localhost:6001/plants', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(plantObj)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+
+  }
+
   return (
-    <div className="new-plant-form">
+    <div className="new-plant-form" onSubmit={handleNewPlantForm}>
       <h2>New Plant</h2>
       <form>
         <input type="text" name="name" placeholder="Plant name" />
